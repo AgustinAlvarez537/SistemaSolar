@@ -1,0 +1,32 @@
+﻿using UnityEngine;
+using System.Collections;
+
+namespace CardboardGestures.Gestures
+{
+    public class Gesture_LookRight : AbstractGesture
+    {
+
+        float sensibilidad; //que tan sensible es el gesto de "Mirar Derecha" mientras mas grande el número menos sensible. [0 - 5 mas o menos]
+
+        public override string GestureName()
+        {
+            return "LookRight";
+        }
+
+        public override bool Analyze()
+        {
+            if (Input.gyro.rotationRateUnbiased.y < -sensibilidad) // reconocí el movimiento de la cabeza hacia la derecha
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void Start()
+        {
+            Input.gyro.enabled = true;
+            sensibilidad = 2.0f;
+        }
+
+    }
+}
