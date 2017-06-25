@@ -16,34 +16,34 @@ namespace CardboardGestures.Conditions
 
             myScript.range = EditorGUILayout.FloatField("Rango", myScript.range);
 
-            myScript.showBalloon = EditorGUILayout.Toggle("Mostrar rango", myScript.showBalloon);
+			myScript.showZonaEsfera = EditorGUILayout.Toggle("Mostrar zonaEsfera (Rango)", myScript.showZonaEsfera);
 
-            if (myScript.showBalloon)
+            if (myScript.showZonaEsfera)
             {
-                if (myScript.objeto2 != null && myScript.Balloon == null)
+                if (myScript.objeto2 != null && myScript.zonaEsfera == null)
                 {
-                    myScript.Balloon = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    myScript.Balloon.name = "Range sphere";
-                    myScript.Balloon.transform.position = myScript.objeto2.transform.position;
+                    myScript.zonaEsfera = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    myScript.zonaEsfera.name = "Range sphere";
+                    myScript.zonaEsfera.transform.position = myScript.objeto2.transform.position;
                     
-                    myScript.Balloon.transform.localScale = new Vector3(myScript.range * 2, myScript.range * 2, myScript.range * 2);
-                    //myScript.Balloon.GetComponent<Renderer>().material.shader = Shader.Find("Unlit/Transparent");
+                    myScript.zonaEsfera.transform.localScale = new Vector3(myScript.range * 2, myScript.range * 2, myScript.range * 2);
+                    //myScript.zonaEsfera.GetComponent<Renderer>().material.shader = Shader.Find("Unlit/Transparent");
                     Color c = Color.yellow;
                     c.a = 0.3f;
-                    myScript.Balloon.GetComponent<Renderer>().material.color = c;
-                    myScript.Balloon.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                    myScript.zonaEsfera.GetComponent<Renderer>().material.color = c;
+                    myScript.zonaEsfera.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 }
                 if (myScript.range != myScript.oldRange)
                 {
                     myScript.oldRange = myScript.range;
-                    myScript.Balloon.transform.position = myScript.objeto2.transform.position;
-                    myScript.Balloon.transform.localScale = new Vector3(myScript.range * 2, myScript.range * 2, myScript.range * 2);
+                    myScript.zonaEsfera.transform.position = myScript.objeto2.transform.position;
+                    myScript.zonaEsfera.transform.localScale = new Vector3(myScript.range * 2, myScript.range * 2, myScript.range * 2);
                 }
             }
             else
             {
-                GameObject.DestroyImmediate(myScript.Balloon);
-                myScript.Balloon = null;
+                GameObject.DestroyImmediate(myScript.zonaEsfera);
+                myScript.zonaEsfera = null;
             }
         }
     }

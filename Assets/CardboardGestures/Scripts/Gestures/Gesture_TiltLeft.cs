@@ -9,29 +9,14 @@ namespace CardboardGestures.Gestures
 {
     public class Gesture_TiltLeft : AbstractGesture
     {
+
+        public float inclinacion = 0.7f;
         public DeviceOrientation orientation;
-
         private Vector3 initialVector;
-
-        float range = 0.7f;
 
         public override string GestureName()
         {
             return "Tilt Left";
-        }
-
-        public override bool Analyze()
-        {
-            if ((orientation == DeviceOrientation.LandscapeLeft
-                       && initialVector.x - range > Input.acceleration.x)
-                       ||
-                       (orientation == DeviceOrientation.LandscapeRight
-                       && initialVector.x + range > Input.acceleration.x)
-                       )
-            {
-                return true;
-            }
-            return false;
         }
 
         void Start(){
@@ -39,6 +24,18 @@ namespace CardboardGestures.Gestures
             initialVector = new Vector3(0.0f, -1.0f, 0.0f);
         }
 
-       
+        public override bool Analyze()
+        {
+            if ((orientation == DeviceOrientation.LandscapeLeft
+				&& initialVector.x - inclinacion > Input.acceleration.x)
+                       ||
+                       (orientation == DeviceOrientation.LandscapeRight
+					&& initialVector.x + inclinacion > Input.acceleration.x)
+                       )
+            {
+                return true;
+            }
+         return false;
+        }
     }
 }

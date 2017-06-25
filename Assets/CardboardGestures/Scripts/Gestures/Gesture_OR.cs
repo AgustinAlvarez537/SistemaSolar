@@ -10,6 +10,11 @@ namespace CardboardGestures.Gestures
         public AbstractGesture gesture1;
         public AbstractGesture gesture2;
 
+        void Start()
+        {
+
+        }
+
         public override string GestureName()
         {
             return "OR";
@@ -32,11 +37,6 @@ namespace CardboardGestures.Gestures
             }
                 
             return false;
-        }
-
-        void Start()
-        {
-
         }
     }
 }

@@ -4,11 +4,12 @@ namespace CardboardGestures.Gestures
 {
     public class Gesture_LookDown : AbstractGesture
     {
+
+        public float sensibilidad = 0.7f;
+
         public DeviceOrientation orientation;
 
         private Vector3 initialVector;
-
-        float range = 0.7f;
 
         public override string GestureName()
         {
@@ -16,16 +17,16 @@ namespace CardboardGestures.Gestures
         }
 
         public override bool Analyze()
+        {
+            if ((orientation == DeviceOrientation.LandscapeLeft || orientation == DeviceOrientation.LandscapeRight)
+               && initialVector.z - sensibilidad >= Input.acceleration.z)
             {
-                if ((orientation == DeviceOrientation.LandscapeLeft || orientation == DeviceOrientation.LandscapeRight)
-                    && initialVector.z - range >= Input.acceleration.z)
-                {
-                    return true;
-                }
-                return false;
+                return true;
             }
+            return false;
+        }
 
-        void Start()
+        public void Start()
         {
             initialVector = new Vector3(0.0f, -1.0f, 0.0f);
         }

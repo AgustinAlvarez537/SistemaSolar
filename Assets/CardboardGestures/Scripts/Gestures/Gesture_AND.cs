@@ -9,13 +9,18 @@ namespace CardboardGestures.Gestures
 
         public AbstractGesture gesture1;
         public AbstractGesture gesture2;
-        public float timeBetweenGestures;
-        [Header("Active si quiere ejecucion en orden")]
-        public bool inOrder;
         bool gesture1Detected;
         bool gesture2Detected;
         float timeGesture1;
         float timeGesture;
+        public float timeBetweenGestures;
+        [Header("Active si quiere ejecucion en orden")]
+        public bool inOrder;
+
+        void Start()
+        {
+
+        }
 
         public override string GestureName()
         {
@@ -28,17 +33,17 @@ namespace CardboardGestures.Gestures
             {
                 debugInfo.GetComponent<TextMesh>().text = "gesture1: " + gesture1.isDetected() + ",gesture2: " + gesture2.isDetected();
             }
-            if (gesture1 == null || gesture2 == null)
-            {
-                return false;
-            }
+			if (gesture1 == null || gesture2 == null) 
+			{
+				return false;
+			}
             if (inOrder)
             {
                 if (gesture1.isDetected())
                 {
                     gesture1Detected = true;
                     timeGesture1 = Time.time;
-
+                    
                 }
                 if (gesture1Detected)
                 {
@@ -70,7 +75,7 @@ namespace CardboardGestures.Gestures
                     }
 
                 }
-                if (gesture2.isDetected())
+                if(gesture2.isDetected())
                 {
                     gesture2Detected = true;
                     if (!gesture1Detected)
@@ -99,14 +104,5 @@ namespace CardboardGestures.Gestures
             }
             return false;
         }
-
-        void Start()
-        {
-
-        }
-
-        
-
-        
     }
 }
