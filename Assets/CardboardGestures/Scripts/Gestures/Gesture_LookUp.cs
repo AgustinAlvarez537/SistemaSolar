@@ -4,8 +4,9 @@ namespace CardboardGestures.Gestures
 {
     public class Gesture_LookUp : AbstractGesture
     {
+		public float inclinacion = 45f;
 
-		public float sensibilidad = 0.7f;
+		private float sensibilidad = 0.7f;
 
         public DeviceOrientation orientation;
 
@@ -29,7 +30,11 @@ namespace CardboardGestures.Gestures
         public void Start()
         {
             initialVector = new Vector3(0.0f, -1.0f, 0.0f);
+			sensibilidad = convertDegreesToSensibility (inclinacion);
         }
+		private float convertDegreesToSensibility(float inclinationDegrees){
+			return inclinationDegrees / 90f;
+		}   
                 
     }
 }

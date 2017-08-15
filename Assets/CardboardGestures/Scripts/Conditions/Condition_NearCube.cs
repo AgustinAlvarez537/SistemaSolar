@@ -11,7 +11,8 @@ namespace CardboardGestures.Conditions
         public float oldLado;
         public Vector3 posicion;
 
-        // el range forma una esfera alrededor del centro del objeto que de ser traspasada hacia adentro hace que la función satisfied se evalue en true, de lo contrario en false
+        // el range forma una esfera alrededor del centro del objeto que de ser traspasada hacia adentro 
+		// hace que la función satisfied se evalue en true, de lo contrario en false
 
         void Start()
         {
@@ -19,7 +20,7 @@ namespace CardboardGestures.Conditions
 			{
 				zonaCubica = GameObject.CreatePrimitive (PrimitiveType.Cube);
 				zonaCubica.transform.position = posicion;
-				zonaCubica.transform.localScale = new Vector3(lado / 2, lado / 2, lado / 2);
+				zonaCubica.transform.localScale = new Vector3(lado, lado, lado);
 			}
             zonaCubica.GetComponent<MeshRenderer>().materials = new Material[0];
         }

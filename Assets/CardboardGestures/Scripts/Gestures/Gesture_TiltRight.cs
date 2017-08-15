@@ -16,7 +16,7 @@ namespace CardboardGestures.Gestures
 
         void Start()
         {
-
+			inclinacion = convertDegreesToSensibility (inclinacion);
             initialVector = new Vector3(0.0f, -1.0f, 0.0f);
         }
 
@@ -33,5 +33,8 @@ namespace CardboardGestures.Gestures
             }
             return false;
         }
+		private float convertDegreesToSensibility(float inclinationDegrees){
+			return inclinationDegrees / 90f;
+		}   
     }
 }

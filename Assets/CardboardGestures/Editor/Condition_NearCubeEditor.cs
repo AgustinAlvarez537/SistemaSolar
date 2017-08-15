@@ -15,7 +15,7 @@ namespace CardboardGestures.Conditions
 
             myScript.showZonaCubica = EditorGUILayout.Toggle("Mostrar zonaCubica", myScript.showZonaCubica);
             myScript.posicion = EditorGUILayout.Vector3Field("Posición del zonaCubica", myScript.posicion);
-            myScript.lado = EditorGUILayout.FloatField("Longitud de cada lado", myScript.lado);
+            myScript.lado = EditorGUILayout.FloatField("Longitud de cada cara", myScript.lado);
 
             if (myScript.showZonaCubica)
             {
@@ -26,18 +26,16 @@ namespace CardboardGestures.Conditions
                     myScript.zonaCubica.name = "Range cube";
                     myScript.zonaCubica.transform.position = myScript.posicion;
                     Color c = Color.yellow;
-                    c.a = 0.3f;
+					c.a = 0.3f;
                     myScript.zonaCubica.GetComponent<Renderer>().material.color = c;
-
-
-                    myScript.zonaCubica.transform.localScale = new Vector3(myScript.lado / 2, myScript.lado / 2, myScript.lado / 2);
+                    myScript.zonaCubica.transform.localScale = new Vector3(myScript.lado, myScript.lado, myScript.lado);
                 }
 
                 if (myScript.lado != myScript.oldLado)
                 {
                     myScript.oldLado = myScript.lado;
                     myScript.zonaCubica.transform.position = myScript.posicion;
-                    myScript.zonaCubica.transform.localScale = new Vector3(myScript.lado / 2, myScript.lado / 2, myScript.lado / 2);
+                    myScript.zonaCubica.transform.localScale = new Vector3(myScript.lado, myScript.lado, myScript.lado);
                 }
             }
             else
@@ -47,4 +45,5 @@ namespace CardboardGestures.Conditions
             }
         }
     }
+
 }
