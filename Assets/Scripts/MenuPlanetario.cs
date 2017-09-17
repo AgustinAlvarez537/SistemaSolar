@@ -254,9 +254,6 @@ public class MenuPlanetario : MonoBehaviour {
     void start() {
         currentPlanet = (int)Planets.Earth;
         currentPlanet = 5;
-
-
-    
     }
 
     public void nextPlanet() {

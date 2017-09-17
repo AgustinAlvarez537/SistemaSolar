@@ -19,7 +19,6 @@ public class NotExitApp : MonoBehaviour {
 		derechaReconocida = false;
 		IzquierdaReconocida = false;
 		reconociendo = true;
-		velocidad = velocidad;
 	}
 
 
