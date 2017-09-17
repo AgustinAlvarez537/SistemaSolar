@@ -5,12 +5,12 @@ public class DesplazarAIzq : MonoBehaviour {
 	public GameObject user;
 	public GameObject planet;
 	public float range = 1000f;
-	public float inclinacion = 70f;
+	public float inclination = 70f;
 	bool movementDone = false;
 	private Vector3 initialVector;
 
 	void Start () {
-		inclinacion = convertDegreesToSensibility (inclinacion);
+		inclination = convertDegreesToSensibility (inclination);
 		initialVector = new Vector3(0.0f, -1.0f, 0.0f);
 	}
 
@@ -22,7 +22,7 @@ public class DesplazarAIzq : MonoBehaviour {
 			if (Mathf.Abs (distanceX) <= range 
 				&& Mathf.Abs (distanceY) <= range 
 				&& Mathf.Abs (distanceZ) <= range) {
-				if (initialVector.x + inclinacion < Input.acceleration.x){
+				if (initialVector.x - inclination > Input.acceleration.x){
 					user.transform.position = new Vector3 (-8053,
 						2, -1760);
 					movementDone=true;

@@ -5,12 +5,12 @@ public class NotExitApp : MonoBehaviour {
 	
 	public GameObject SureExitPanel;
 	public GameObject MenuPlanetarioPanel;
-	public GameObject usuario;
-	public float tiempoMaximoParaReconocerGesto = 5.0f;
+	public GameObject user;
+	public float maxTimeToRecognizeGesture = 5.0f;
 	bool derechaReconocida;
 	bool IzquierdaReconocida;
 	bool reconociendo;
-	public float velocidad;
+	public float gestureSpeed = 2.0f;
 	float tiempoMax = 5.0f;
 	bool notExit = false;
 
@@ -24,28 +24,28 @@ public class NotExitApp : MonoBehaviour {
 
 	void Update(){
 		if (!notExit) {
-			if (Time.time >= tiempoMaximoParaReconocerGesto) {
+			if (Time.time >= maxTimeToRecognizeGesture) {
 				reconociendo = false;
 				IzquierdaReconocida = false;
 				derechaReconocida = false;
 			}
 
-			if (Input.gyro.rotationRateUnbiased.y > velocidad && !IzquierdaReconocida)
+			if (Input.gyro.rotationRateUnbiased.y > gestureSpeed && !IzquierdaReconocida)
 				reconociendo = true;
 
 			if (!reconociendo)
-				tiempoMaximoParaReconocerGesto = Time.time + tiempoMax;
+				maxTimeToRecognizeGesture = Time.time + tiempoMax;
 			else {
-				if (!IzquierdaReconocida && Time.time < tiempoMaximoParaReconocerGesto) {
-					if (Input.gyro.rotationRateUnbiased.y > velocidad) {
+				if (!IzquierdaReconocida && Time.time < maxTimeToRecognizeGesture) {
+					if (Input.gyro.rotationRateUnbiased.y > gestureSpeed) {
 						reconociendo = true;
 						IzquierdaReconocida = true;
 					}
 				} else {
-					if (Input.gyro.rotationRateUnbiased.y < -velocidad && !derechaReconocida && Time.time < tiempoMaximoParaReconocerGesto) { 
+					if (Input.gyro.rotationRateUnbiased.y < -gestureSpeed && !derechaReconocida && Time.time < maxTimeToRecognizeGesture) { 
 						derechaReconocida = true;
 					} else {
-						if (Input.gyro.rotationRateUnbiased.y > velocidad && Time.time < tiempoMaximoParaReconocerGesto && derechaReconocida) {
+						if (Input.gyro.rotationRateUnbiased.y > gestureSpeed && Time.time < maxTimeToRecognizeGesture && derechaReconocida) {
 							IzquierdaReconocida = false;
 							derechaReconocida = false;
 							reconociendo = false;
