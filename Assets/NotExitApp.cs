@@ -21,7 +21,6 @@ public class NotExitApp : MonoBehaviour {
 		reconociendo = true;
 	}
 
-
 	void Update(){
 		if (!notExit) {
 			if (Time.time >= maxTimeToRecognizeGesture) {
@@ -42,10 +41,12 @@ public class NotExitApp : MonoBehaviour {
 						IzquierdaReconocida = true;
 					}
 				} else {
-					if (Input.gyro.rotationRateUnbiased.y < -gestureSpeed && !derechaReconocida && Time.time < maxTimeToRecognizeGesture) { 
+					if (Input.gyro.rotationRateUnbiased.y < -gestureSpeed &&
+						!derechaReconocida && Time.time < maxTimeToRecognizeGesture) { 
 						derechaReconocida = true;
 					} else {
-						if (Input.gyro.rotationRateUnbiased.y > gestureSpeed && Time.time < maxTimeToRecognizeGesture && derechaReconocida) {
+						if (Input.gyro.rotationRateUnbiased.y > gestureSpeed &&
+							Time.time < maxTimeToRecognizeGesture && derechaReconocida) {
 							IzquierdaReconocida = false;
 							derechaReconocida = false;
 							reconociendo = false;
